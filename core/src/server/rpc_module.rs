@@ -420,7 +420,7 @@ impl Methods {
 		let sink = MethodSink::new(tx_sink);
 		let id = req.id.clone();
 		let params = Params::new(req.params.map(|params| params.get()));
-		let bounded_subs = BoundedSubscriptions::new(u32::MAX);
+		let bounded_subs = BoundedSubscriptions::new(u32::MAX >> 3);
 		let close_notify = bounded_subs.acquire().expect("u32::MAX permits is sufficient; qed");
 		let notify = bounded_subs.acquire().expect("u32::MAX permits is sufficient; qed");
 
